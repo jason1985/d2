@@ -1,0 +1,25 @@
+body {
+  margin: 0;
+}
+
+#div1 {
+  width: 70px;
+  height: 70px;
+  padding: 10px;
+  border: 1px solid #aaaaaa;
+}
+
+.container {
+  min-height: 100vh;
+  display: flex;
+}
+
+.left {
+  width: 50vw;
+  background-color: red;
+}
+
+.right {
+  width: 50vw;
+  background-color: blue;
+}

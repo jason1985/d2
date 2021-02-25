@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horadric Cube</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+    function allowDrop(ev) {
+      ev.preventDefault();
+    }
+    
+    function drag(ev) {
+      ev.dataTransfer.setData("text", ev.target.id);
+    }
+    
+    function drop(ev) {
+      ev.preventDefault();
+      var data = ev.dataTransfer.getData("text");
+      ev.target.appendChild(document.getElementById(data));
+      playSound('Recording.m4a');
+    }
+
+
+
+    function playSound(url) {
+  const audio = new Audio(url);
+  audio.play();
+}
+    </script>
+    </head>
+    <body>
+
+
+    <div class="container">
+        <div class="left">
+    <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+    <div id="div1" ondrop="drop(event)" ondragover="allowDrop(event)"><img id="drag1" src="el-rune.PNG" draggable="true" ondragstart="drag(event)" width="70" height="70"></div>
+    <br>
+    <button onclick="playSound('Recording.m4a');">Play</button>  
+
+
+        </div>
+        <div class="right"></div>
+    </div>
+    </body>
+</html>
