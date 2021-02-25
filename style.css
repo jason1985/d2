@@ -12,14 +12,42 @@ body {
 .container {
   min-height: 100vh;
   display: flex;
+  background: url(back.jpg) no-repeat center center fixed;
+  background-size: cover;
+  z-index: 20;
 }
 
 .left {
   width: 50vw;
-  background-color: red;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .right {
   width: 50vw;
-  background-color: blue;
+}
+
+.grid-container {
+  height: 33%;
+  width: 33%;
+  display: grid;
+  grid-template-columns: auto auto auto;
+  grid-gap: 2px;
+  background-color: #2196f3;
+  padding: 2px;
+}
+
+.grid-container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid black;
+  text-align: center;
+  font-size: 30px;
+}
+
+.cube {
+  width: 200px;
+  height: 200px;
+  border: 1px solid white;
 }
