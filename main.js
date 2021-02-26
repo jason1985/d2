@@ -1,3 +1,8 @@
+const recipes = [
+  ['berberber', 'jah'],
+  ['jahjahjah', 'um'],
+]
+
 //drag & drop functionality
 
 function allowDrop(ev) {
@@ -35,12 +40,41 @@ function playSound(url) {
 //check for 3 & 4 item recipes
 //if matched place new item in propper square (top left)
 function transmute() {
+  //transmute animation
+  document.getElementById('transmute').style.transform = 'scale(.95)'
+  setTimeout(() => {
+    document.getElementById('transmute').style.transform = 'scale(1)'
+  }, 150)
+
+  //getting cubeSquares HTMLCollection
   let cubeSquares = document.getElementsByClassName('cubeSquare')
+
+  let transmutedRunes = []
   for (const element of cubeSquares) {
     if (element.hasChildNodes()) {
-      console.log(element.childNodes[0].id)
+      console.log(element.firstChild.className)
+      transmutedRunes.push(element.firstChild.className)
     }
-    // console.log(element)
   }
-  //   console.log(cubeSquares)
+  console.log(transmutedRunes)
+
+  if (transmutedRunes.length > 2 && transmutedRunes.length < 5) {
+    // all recipes require 3-4 runes/gems
+    //check if combination of runes exists in recipe list
+    let searchRecipe = transmutedRunes.sort().join('')
+    recipes.forEach((recipe) => {
+      if (recipe[0] === searchRecipe) {
+        //found the recipe
+        let rune = document.getElementsByClassName(recipe[1])[0] // get the rune result
+        //clear out the cube
+        for (const element of cubeSquares) {
+          if (element.hasChildNodes()) {
+            element.removeChild(element.firstChild)
+          }
+        }
+        //adding result of recipe
+        cubeSquares.item(0).appendChild(rune)
+      }
+    })
+  }
 }
