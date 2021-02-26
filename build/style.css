@@ -1,3 +1,7 @@
+body {
+  margin: 0;
+}
+
 .container {
   min-height: 100vh;
   display: flex;
@@ -6,43 +10,22 @@
 }
 
 .left {
-  /* border: solid 1px black; */
-
   width: 50vw;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
   /* background: url('left.jpg') no-repeat center; */
-  /* background-size: cover; */
+  background-size: cover;
 }
 
 .right {
-  /* border: solid 1px black; */
-  margin: 0;
   width: 50vw;
-  /* display: flex; */
-  /* align-items: baseline;
-  flex-direction: row; */
-  justify-content: center;
-}
-
-.right-top {
-  border-bottom: 1px solid black;
-
-  margin: 0;
-  width: 50vw;
-  height: 49vh;
-}
-
-.right-bot {
-  /* border: 1px solid black; */
-
   display: flex;
+  /* align-items: bottom; */
   justify-content: center;
-
-  width: 50vw;
-  height: 49vh;
+  /* background: url('right.jpg') no-repeat center; */
+  background-size: cover;
 }
 
 .horadic-cube {
@@ -75,7 +58,7 @@
   display: grid;
   margin: 0;
   padding: 0;
-  height: 55.5%;
+  height: 27%;
   width: 90%;
   grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10% 10%;
   grid-template-rows: 25% 25% 25% 25%;
@@ -107,19 +90,4 @@
   cursor: pointer;
   background: url('transmute.png') no-repeat center;
   background-size: cover;
-}
-
-body,
-html {
-  margin: 0;
-  padding: 0;
-}
-* {
-  box-sizing: border-box;
-}
-
-ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
 }

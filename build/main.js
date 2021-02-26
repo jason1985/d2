@@ -78,23 +78,3 @@ function transmute() {
     })
   }
 }
-
-{
-  /* <img class="um" id="drag1" src="./runes/um.png" draggable="true" ondragstart="drag(event)"> */
-}
-
-// also add position to place items
-// function addItem(name, src, id) {
-function addItem() {
-  let name = 'um'
-  let src = './runes/um.png'
-  let id = 4
-  let img = document.createElement('img')
-  img.src = src
-  img.className = name
-  img.id = `drag${id}`
-  img.draggable = 'true'
-  img.ondragstart = drag
-  let stashSquares = document.getElementsByClassName('stashSquare')
-  stashSquares.item(0).appendChild(img)
-}
