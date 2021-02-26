@@ -1,9 +1,44 @@
+//Recipes for upgrading runes
+//C = chipped
+//FD = flawed
+//FS = flawless
+//first element is sorted alhpabetically or it wont match cube transmit array
 const recipes = [
-  ['berberber', 'jah'],
-  ['jahjahjah', 'um'],
+  ['ElElEl', 'Eld'],
+  ['EldEldEld', 'Tir'],
+  ['TirTirTir', 'Nef'],
+  ['NefNefNef', 'Eth'],
+  ['EthEthEth', 'Ith'],
+  ['IthIthIth', 'Tal'],
+  ['TalTalTal', 'Ral'],
+  ['RalRalRal', 'Ort'],
+  ['OrtOrtOrt', 'Thul'],
+  ['CTopazThulThulThul', 'Amn'],
+  ['AmnAmnAmnCAmethyst', 'Sol'],
+  ['CSapphireSolSolSol', 'Shael'],
+  ['CRubyShaelShaelShael', 'Dol'],
+  ['CEmeraldDolDolDol', 'Hel'],
+  ['CDiamondHelHelHel', 'Io'],
+  ['oFDTopazIoIoI', 'Lum'],
+  ['FDAmethystLumLumLum', 'Ko'],
+  ['FDSapphireKoKoKo', 'Fal'],
+  ['FalFalFalFDRuby', 'Lem'],
+  ['FDEmeraldLemLemLem', 'Pul'],
+  ['FDDiamondPulPul', 'Um'],
+  ['TopazUmUm', 'Mal'],
+  ['AmethystMalMal', 'Ist'],
+  ['IstIstSapphire', 'Gul'],
+  ['GulGulRuby', 'Vex'],
+  ['EmeraldVexVex', 'Ohm'],
+  ['DiamondOhmOhm', 'Lo'],
+  ['FSTopazLoLo', 'Sur'],
+  ['FSAmethystSurSur', 'Ber'],
+  ['BerBerFSSapphire', 'Jah'],
+  ['FSRubyJahJah', 'Cham'],
+  ['ChamChamFSEmerald', 'Zod'],
 ]
 
-//drag & drop functionality
+///////////////////drag & drop functionality
 
 function allowDrop(ev) {
   if (ev.target.childNodes.length == 0) {
@@ -26,9 +61,10 @@ function drop(ev) {
   }
 }
 
-//different types of possible audio
-//skull, gem, rune, transmute
+///////////// end of drag & drop ////////////////////
 
+//different types of possible audio
+//skull, gem, rune, transmute, cube sound
 function playSound(url) {
   const audio = new Audio(url)
   audio.play()
@@ -63,38 +99,104 @@ function transmute() {
     //check if combination of runes exists in recipe list
     let searchRecipe = transmutedRunes.sort().join('')
     recipes.forEach((recipe) => {
-      if (recipe[0] === searchRecipe) {
+      if (recipe[0].toLowerCase() === searchRecipe) {
         //found the recipe
-        let rune = document.getElementsByClassName(recipe[1])[0] // get the rune result
+        let rune = recipe[1] // get the rune result
         //clear out the cube
-        for (const element of cubeSquares) {
-          if (element.hasChildNodes()) {
-            element.removeChild(element.firstChild)
-          }
-        }
+        clearItems()
         //adding result of recipe
-        cubeSquares.item(0).appendChild(rune)
+        console.log(rune)
+        addItem(rune, 0, 'cube')
+        // cubeSquares.item(0).appendChild(rune)
       }
     })
   }
 }
 
-{
-  /* <img class="um" id="drag1" src="./runes/um.png" draggable="true" ondragstart="drag(event)"> */
+//clears out cube & inventory (rename stashSquare to Inventory square)
+function clearItems() {
+  let cubeSquares = document.getElementsByClassName('cubeSquare')
+  let stashSquares = document.getElementsByClassName('stashSquare')
+
+  for (const element of cubeSquares) {
+    if (element.hasChildNodes()) {
+      element.removeChild(element.firstChild)
+    }
+  }
+
+  for (const element of stashSquares) {
+    if (element.hasChildNodes()) {
+      element.removeChild(element.firstChild)
+    }
+  }
 }
+/* <img class="um" id="drag1" src="./runes/um.png" draggable="true" ondragstart="drag(event)"> */
 
 // also add position to place items
-// function addItem(name, src, id) {
-function addItem() {
-  let name = 'um'
-  let src = './runes/um.png'
-  let id = 4
+function addItem(name, id, place) {
+  name = name.toLowerCase()
+  console.log(name, '<<check if lowercase')
+  let src = `./runes/${name}.png`
   let img = document.createElement('img')
   img.src = src
   img.className = name
   img.id = `drag${id}`
   img.draggable = 'true'
   img.ondragstart = drag
-  let stashSquares = document.getElementsByClassName('stashSquare')
-  stashSquares.item(0).appendChild(img)
+  if (place === 'stash') {
+    let stashSquares = document.getElementsByClassName('stashSquare')
+    stashSquares.item(id).appendChild(img)
+  } else if (place === 'cube') {
+    let cubeSquares = document.getElementsByClassName('cubeSquare')
+    cubeSquares.item(id).appendChild(img)
+  }
 }
+
+//make runes folder include gems too maybe rename to runesandgems?
+//add Ingredients for given recipe number from recipeList array
+function addIngr(num) {
+  let ingr = recipeList[num][0]
+
+  //clear out cube & stash
+  clearItems()
+  //using index named id to server as id (only 4 runes/ids possible at a time in stash & cube area)
+  ingr.forEach((ingredient, id) => {
+    addItem(ingredient, id, 'stash')
+  })
+}
+
+let recipeList = [
+  [['El', 'El', 'El'], ['Eld']],
+  [['Eld', 'Eld', 'Eld'], ['Tir']],
+  [['Tir', 'Tir', 'Tir'], ['Nef']],
+]
+
+// ['NefNefNef', 'Eth'],
+// ['EthEthEth', 'Ith'],
+// ['IthIthIth', 'Tal'],
+// ['TalTalTal', 'Ral'],
+// ['RalRalRal', 'Ort'],
+// ['OrtOrtOrt', 'Thul'],
+// ['CTopazThulThulThul', 'Amn'],
+// ['AmnAmnAmnCAmethyst', 'Sol'],
+// ['CSapphireSolSolSol', 'Shael'],
+// ['CRubyShaelShaelShael', 'Dol'],
+// ['CEmeraldDolDolDol', 'Hel'],
+// ['CDiamondHelHelHel', 'Io'],
+// ['oFDTopazIoIoI', 'Lum'],
+// ['FDAmethystLumLumLum', 'Ko'],
+// ['FDSapphireKoKoKo', 'Fal'],
+// ['FalFalFalFDRuby', 'Lem'],
+// ['FDEmeraldLemLemLem', 'Pul'],
+// ['FDDiamondPulPul', 'Um'],
+// ['TopazUmUm', 'Mal'],
+// ['AmethystMalMal', 'Ist'],
+// ['IstIstSapphire', 'Gul'],
+// ['GulGulRuby', 'Vex'],
+// ['EmeraldVexVex', 'Ohm'],
+// ['DiamondOhmOhm', 'Lo'],
+// ['FSTopazLoLo', 'Sur'],
+// ['FSAmethystSurSur', 'Ber'],
+// ['BerBerFSSapphire', 'Jah'],
+// ['FSRubyJahJah', 'Cham'],
+// ['ChamChamFSEmerald', 'Zod'],

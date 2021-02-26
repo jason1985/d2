@@ -13,10 +13,10 @@
     <div class="container">
         <div class="left">
             <div class="horadic-cube">
-                <div class="cubeSquare" ondrop="drop(event)" ondragover="allowDrop(event)"><img class="um" id="drag1" src="./runes/um.png" draggable="true" ondragstart="drag(event)"></div>
-                <div class="cubeSquare" ondrop="drop(event)" ondragover="allowDrop(event)"><img class="jah" id="drag2" src="./runes/jah.png" draggable="true" ondragstart="drag(event)"></div>
-                <div class="cubeSquare" ondrop="drop(event)" ondragover="allowDrop(event)"><img class="jah" id="drag3" src="./runes/jah.png" draggable="true" ondragstart="drag(event)"></div>
-                <div class="cubeSquare" ondrop="drop(event)" ondragover="allowDrop(event)"><img class="jah" id="drag4" src="./runes/jah.png" draggable="true" ondragstart="drag(event)"></div>
+                <div class="cubeSquare" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="cubeSquare" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="cubeSquare" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+                <div class="cubeSquare" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
                 <div class="cubeSquare" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
                 <div class="cubeSquare" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
                 <div class="cubeSquare" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
@@ -30,14 +30,14 @@
         </div>
         <div class="right">
           <div class="right-top">
-                      <div class="">
-                        <ul>
-                          <li>Ist	Ist +	Sapphire = Gul</li>
-                          <li>Ist	Ist +	Sapphire = Gul</li>
-                          <li>Ist	Ist +	Sapphire = Gul</li>
-                        </ul>
-                      </div>
-                      <button onclick="addItem()">add rune</button>
+            <h1>Click Recipe</h1>
+              <div class="">
+                <ul>
+                  <li onclick=addIngr(0)>Eld Rune = 3 El Runes</li>
+                  <li onclick=addIngr(1)>Tir Rune = 3 Eld Runes</li>
+                  <li onclick=addIngr(2)>Nef Rune = 3 Tir runes</li>
+                </ul>
+              </div>
           </div>
           <div class="right-bot">
             <div class="stash">
